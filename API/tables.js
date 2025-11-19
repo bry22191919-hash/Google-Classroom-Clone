@@ -53,6 +53,15 @@ db.serialize(() => {
         FOREIGN KEY (class_id) REFERENCES classes(id),
         FOREIGN KEY (user_id) REFERENCES users(id)
         )`);
+
+    db.run(`
+        CREATE TABLE IF NOT EXISTS class_students(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        class_id INTEGER,
+        student_id INTEGER,
+        FOREIGN KEY (class_id) REFERENCES classes(id),
+        FOREIGN KEY (student_id) REFERENCES users(id)
+        )`)
 });
 
 module.exports = db; 
